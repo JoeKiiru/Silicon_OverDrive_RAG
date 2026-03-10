@@ -205,3 +205,8 @@ cython_debug/
 marimo/_static/
 marimo/_lsp/
 __marimo__/
+
+# My Additions
+src/my_local_rag_db/
+src/ingestion/dataset
+nltk_data/
