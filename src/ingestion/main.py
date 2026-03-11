@@ -25,7 +25,7 @@ def process_single_file(filename, directory):
 
     return f"Finished {filename}"
 
-def parallel_chunking_and_ingestion():
+def chunking_and_ingestion():
     print("#" * 100)
     print("Started Parallel Chunking and Ingestion")
 
@@ -36,7 +36,7 @@ def parallel_chunking_and_ingestion():
     print(f"Number of files: {len(files)}")
     print()
 
-    print("Starting processing all files")
+    print("Starting the processing all files")
 
     for i, file in enumerate(files):
         results = process_single_file(file, directory)
@@ -47,4 +47,5 @@ def parallel_chunking_and_ingestion():
     print("Ended Parallel Chunking and Ingestion")
     print("#" * 100)
 
-parallel_chunking_and_ingestion()
+if __name__ == "__main__":
+    chunking_and_ingestion()

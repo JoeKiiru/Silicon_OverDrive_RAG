@@ -9,8 +9,8 @@ default_ef = embedding_functions.DefaultEmbeddingFunction()
 
 collection = client.get_or_create_collection(
     name="document_collection", 
-    embedding_function=default_ef
+    metadata={"hnsw:space": "cosine"}
 )
 
 preview = collection.peek(limit=5)
-print(preview["documents"])
+print(preview)

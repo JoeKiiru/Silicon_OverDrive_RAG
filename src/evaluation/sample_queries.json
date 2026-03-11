@@ -1,0 +1,30 @@
+[
+  {
+    "query": "According to the essay 'Writing, Briefly', what is the primary benefit of writing besides communicating ideas?",
+    "ground_truth": "Writing doesn't just communicate ideas; it generates them. If you are bad at it, you miss out on the ideas writing would have produced. (Source: Writing  Briefly.txt)"
+  },
+  {
+    "query": "Why does the author believe it is difficult to reproduce Silicon Valley in Japan?",
+    "ground_truth": "The author argues that a key feature of Silicon Valley is immigration, and since Japan generally doesn't like immigration, they would likely try to build a version consisting only of Japanese people, which guarantees failure. (Source: Why Startups Condense in America.txt)"
+  },
+  {
+    "query": "What was the 'flimsy' software that the author spent years working on, which led to the realization of a design philosophy?",
+    "ground_truth": "The software was Arc, a language that critics complained seemed flimsy because it only consisted of a few thousand lines of macros. (Source: Six Principles for Making New Things.txt)"
+  },
+  {
+    "query": "What prediction does the author make about the programming language Java?",
+    "ground_truth": "The author predicts that Java is an evolutionary dead-end, much like Cobol, despite its current popularity in bookstores and universities. (Source: The HundredYear Language.txt)"
+  },
+  {
+    "query": "What is described as the second biggest cause of death for startups?",
+    "ground_truth": "The second biggest cause of death for startups is the difficulty of raising money, surpassed only by the failure to make something people want. (Source: A Fundraising Survival Guide.txt)"
+  },
+  {
+    "query": "How will the future of web startups affect the way people are measured by performance?",
+    "ground_truth": "The process will become a 'big, straight pipe' where performance measurement propagates all the way back to high school, flushing out arbitrary metrics. (Source: The Future of Web Startups.txt)"
+  },
+  {
+    "query": "In 'Six Principles for Making New Things', what example is used to show that simple ideas look wrong at first because they are 'under your nose'?",
+    "ground_truth": "Reddit is cited as a classic example; its minimal design seemed like nothing at first, but it solved the real problem of telling people what was new. (Source: Six Principles for Making New Things.txt)"
+  }
+]
