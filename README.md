@@ -4,7 +4,7 @@
 
 ---
 
-## 📌 Overview
+## Overview
 In order to establish a RAG System ready for real world use, the following needs to be established: 
 
 * 1. Obtaining the data and then cleaning it. This is necessary to establish the data in a format and state that it can be effectivley used for processing.
@@ -34,25 +34,52 @@ In order to setup the documents for RAG functionality in such a way that they ca
 ---
 
 
-## 🛠️ Tech Stack
-List the primary languages, frameworks, and infrastructure used:
+## Tech Stack
+List the primary languages, frameworks, and technologies used:
 * **Backend:** Python (FastAPI / Pydantic)
-* **Orchestration:** LangGraph
-* **Cloud Infrastructure:** AWS (ECS, SageMaker, ECR)
-* **Storage:** Redis / PostgreSQL
+* **Web Scraping:** BeautifulSoup4
+* **RAG Vector DB:** Chroma 
+* **Similarity Search Method:** Cosine Similarity Using all-MiniLM-L6-v2 model from sentence_transformers
+* **Evaluation Model and Metric:** cross-encoder/nli-deberta-v3-small from sentence_transformers
 
 ---
 
-## 🚀 Getting Started
+## Getting Started
 
 ### Prerequisites
 List the software or accounts needed before running the code.
 * Python 3.10+
-* Docker (Optional)
-* AWS CLI configured (If applicable)
+* A HuggingFace Account Setup. You will need to obtain an access token with permissions set to use the Inference API: https://huggingface.co/docs/hub/en/security-tokens
+* A Unix Based Terminal
 
 ### Installation
 1. **Clone the repository:**
    ```bash
-   git clone [https://github.com/your-username/your-repo-name.git](https://github.com/your-username/your-repo-name.git)
-   cd your-repo-name
+   git clone git@github.com:JoeKiiru/Silicon_OverDrive_RAG.git
+   cd Silicon_OverDrive_RAG
+
+2. **Install the Python Packages**
+   ```bash
+   make install
+
+3. **Login To HuggingFace locally, you will need to add your Access Token as input**
+   ```bash
+   hf auth login
+4. **Download the datasets from https://paulgraham.com/articles.html**
+   ```bash
+   make scrape-data
+5. **Process and Ingest the datasets into your local ChromaDB**
+   ```bash
+   make ingest-data
+6. **Run the FastAPI Application to query the RAG Q&A System**
+   ```bash
+   make run
+7. **To query the RAG Q&A System, you can use a curl request like so:**
+   ```bash
+   curl -X POST http://127.0.0.1:8000/query      -H "Content-Type: application/json"      -d '{"query": "What is VC Suckage"}'
+8. **To evaluate the RAG Q&A System using a faithfulness metric, run the following:**
+   ```bash
+   make evaluate-rag
+9. **To clean your local repositoru and therefore remove your virtual environment, run:**
+   ```bash
+   make clean
