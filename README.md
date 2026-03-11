@@ -15,9 +15,19 @@ In order to establish a RAG System ready for real world use, the following needs
 * 6. And then finally, evaluating the reliablity of the RAG Q&A System, and it's ability to faithfully retrieve and present the most relevant document to the user query.
 
 ## 1. Ingestion & Chunking:
-In order to setup the documents for RAG functionality in such a way that they can efficiently be retrieved, they need to be chunked and embedded to a Database. 
-## 2. Retrieval: 
-## 3. Generation: 
+The documents are obtained from: https://paulgraham.com/articles.html, which contains a list of links pointing to the essays that will be the datasets for the RAG System.
+Therefore in order to do so, **BeautifulSoup4** was used to download each essay, which were all stored in **src/ingestion/dataset**.
+
+Next, in order to setup the documents for RAG functionality in such a way that they can efficiently be retrieved, they need to be chunked and embedded to a Database. The chunking code can be found in **src/ingestion/chunking.py**. 
+
+The chunking strategy used is **Sentance Aware**, where each document is broken down into a list of sentances. This is more effective because the context of the current sentance is maintained, but this technique also overlaps more than one sentance to further emphasise the context. This is done so up to a maximum chunk size of 500 characters.
+
+The next step is to then ingest the chunks to the RAG DB. In addition to the chunks being ingested, each chunk needs to be converted to a vector embedding, which will be used to efficiently retrieve the documents. This is done so using the **all-MiniLM-L6-v2** model to embed the chunks. The database used to store the chunks and embeddings is Chroma, an open-source Vector Database.
+
+A limitation of making use of a **Sentance Aware** chunking strategy, is that for a very long sentance, or even paragraph once the maximum chunk size is exceeded, the context will not be as relevant. The whole document would need to be considered, especially if it contains a lot of text, therefore a more thorough chunking strategy would be needed. There is also the context window that would need to be considered, as each chunk used in the generation phase may be too large for the Chat LLM and the Embedding LLM to process (of course up to a very high chunk size).
+## 2. Retrieval:
+The retrieval from the Chroma Vector DB is done making use of Cosine Similarity. The user query is converted to a vector embedding automatically when querying from the Chroma Vector DB (making use of the Chroma DB **collection** object). As part of the querying, a Cosine Similarity Search is used with the embedding vectors associated with the document to retrieve the documents with the highest similarity scores.
+## 3. Generation:
 ## 4. Hallucination Mitigation: 
 ## 4. Evaluation:
 
@@ -39,8 +49,8 @@ List the primary languages, frameworks, and technologies used:
 * **Backend:** Python (FastAPI / Pydantic)
 * **Web Scraping:** BeautifulSoup4
 * **RAG Vector DB:** Chroma 
-* **Similarity Search Method:** Cosine Similarity Using all-MiniLM-L6-v2 model from sentence_transformers
-* **Evaluation Model and Metric:** cross-encoder/nli-deberta-v3-small from sentence_transformers
+* **Similarity Search Method:** Cosine Similarity using **all-MiniLM-L6-v2** model from sentence_transformers for ingestion.
+* **Evaluation Model and Metric:** **cross-encoder/nli-deberta-v3-small** from sentence_transformers
 
 ---
 
